@@ -22,7 +22,7 @@ RUN echo "server { \
         index index.html index.htm; \
         try_files \$uri \$uri/ /index.html; \
     } \
-    location /api-proxy { \
+    location /api-proxy/ { \
         proxy_pass https://chosun-backend-491702989448.asia-northeast3.run.app/; \
         proxy_ssl_server_name on; \
         proxy_set_header Host chosun-backend-491702989448.asia-northeast3.run.app; \
@@ -33,3 +33,4 @@ RUN echo "server { \
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
+
