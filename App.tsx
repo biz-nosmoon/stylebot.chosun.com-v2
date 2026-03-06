@@ -302,7 +302,13 @@ ${stylebookText}
     setAnalysisProgress(10);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const isProd = import.meta.env.PROD;
+      const ai = new GoogleGenAI(
+        isProd 
+          ? { apiKey: process.env.API_KEY, vertexai: true } 
+          : { apiKey: process.env.GEMINI_API_KEY }
+      );
+
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
