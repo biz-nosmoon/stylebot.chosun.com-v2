@@ -4,6 +4,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+
+# 🚨 마법의 한 줄: AI Studio가 루트에 둔 파일을 빌드 직전에 public 폴더로 자동 복사합니다!
+RUN mkdir -p public && cp Global_Stylebook_Data.txt public/
+
+# 복사된 상태로 빌드 진행
 RUN npm run build
 
 # 2단계: 실행 환경 (Nginx)
