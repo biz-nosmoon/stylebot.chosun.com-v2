@@ -305,8 +305,8 @@ ${stylebookText}
       const isProd = import.meta.env.PROD;
       const ai = new GoogleGenAI(
         isProd 
-          ? { apiKey: "dummy-key-for-proxy", vertexai: true } 
-          : { apiKey: process.env.GEMINI_API_KEY }
+            ? { apiKey: process.env.API_KEY, vertexai: true } 
+            : { apiKey: process.env.GEMINI_API_KEY }
       );
 
       
