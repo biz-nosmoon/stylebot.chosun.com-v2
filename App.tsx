@@ -310,6 +310,9 @@ ${stylebookText}
         ? import.meta.env.VITE_API_KEY 
         : (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '');
 
+      // 🚨 새 코드가 배포되었는지 확인하기 위한 추적 로그
+      console.log("🔑 API 키 상태 확인:", gen_apiKey ? "성공적으로 들어왔습니다!" : "여전히 비어있습니다 (MISSING)");
+
       if (!gen_apiKey) {
         console.error("🚨 API Key가 설정되지 않았습니다! 환경 변수를 확인해주세요.");
       }      
