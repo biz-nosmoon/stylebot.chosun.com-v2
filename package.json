@@ -5,24 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "mkdir -p public && cp Global_Stylebook_Data.txt public/ && tsc -b && vite build",
-    "start": "serve -s dist -l 8080",
+    "build": "echo VITE_API_KEY=$VITE_API_KEY > .env && mkdir -p public && cp Global_Stylebook_Data.txt public/ && tsc -b && vite build",
+    "start": "vite preview --port 8080 --host 0.0.0.0",
     "preview": "vite preview",
     "lint": "tsc"
-  },   
+  },
   "dependencies": {
-    "serve": "^14.2.4",
     "@google/genai": "^1.38.0",
     "@tailwindcss/vite": "^4.2.1",
     "lucide-react": "^0.563.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "vite": "^6.2.0",
+    "@vitejs/plugin-react": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "typescript": "~5.8.2"
   }
 }
