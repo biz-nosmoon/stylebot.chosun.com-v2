@@ -308,7 +308,6 @@ ${stylebookText}
             ? { apiKey: process.env.API_KEY, vertexai: true } 
             : { apiKey: process.env.GEMINI_API_KEY }
       );
-
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
