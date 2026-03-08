@@ -303,11 +303,17 @@ ${stylebookText}
 
     try {
       const isProd = import.meta.env.PROD;
-      const ai = new GoogleGenAI(
-        isProd 
-            ? { apiKey: process.env.API_KEY, vertexai: true } 
-            : { apiKey: process.env.GEMINI_API_KEY }
-      );
+
+      // 1. 운영(Cloud Run): 빌드 시 주입된 VITE_API_KEY 사용
+      // 2. 개발(AI Studio): AI Studio가 제공하는 process.env.GEMINI_API_KEY 사용
+      const gen_apiKey = isProd 
+        ? import.meta.env.VITE_API_KEY 
+        : (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '');
+
+      if (!gen_apiKey) {
+        console.error("🚨 API Key가 설정되지 않았습니다! 환경 변수를 확인해주세요.");
+      }      
+      const ai = new GoogleGenAI({ apiKey: gen_apiKey });
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
