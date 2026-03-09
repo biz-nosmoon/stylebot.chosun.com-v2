@@ -311,7 +311,7 @@ ${stylebookText}
         : (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '');
 
       // 🚨 새 코드가 배포되었는지 확인하기 위한 추적 로그
-      console.log("🔑 API 키 상태 확인:", gen_apiKey ? "성공적으로 들어왔습니다!" : "여전히 비어있습니다 (MISSING)");
+      //console.log("🔑 API 키 상태 확인:", gen_apiKey ? "성공적으로 들어왔습니다!" : "여전히 비어있습니다 (MISSING)");
 
       if (!gen_apiKey) {
         console.error("🚨 API Key가 설정되지 않았습니다! 환경 변수를 확인해주세요.");
@@ -319,7 +319,8 @@ ${stylebookText}
       const ai = new GoogleGenAI({ apiKey: gen_apiKey });
       
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        //model: 'gemini-3-flash-preview',
+        model: 'gemini-3.1-flash-lite-preview',
         contents: `교열 요청 문장: "${currentInput}"`,
         config: {
           temperature: 0,
@@ -470,10 +471,10 @@ ${stylebookText}
             <ShieldCheck className="text-white" size={20} />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇.</h1>
+            <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Data Active</span>
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Data Active v260309</span>
             </div>
           </div>
         </div>
