@@ -1,0 +1,22 @@
+steps:
+  # 1단계: Buildpacks로 소스 코드를 빌드하여 컨테이너 이미지로 만듭니다.
+  - name: 'gcr.io/k8s-skaffold/pack'
+    entrypoint: 'pack'
+    args:
+      - 'build'
+      - 'asia-northeast3-docker.pkg.dev/skilled-eon-352414/cloud-run-source-deploy/stylebot.chosun.com-v2:latest'
+      - '--builder=gcr.io/buildpacks/builder:latest'
+      - '--env=VITE_API_KEY=$_VITE_API_KEY'
+
+  # 2단계: 완성된 이미지를 Cloud Run에 배포(적용)합니다.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'chosun-frontend-app'
+      - '--image=asia-northeast3-docker.pkg.dev/skilled-eon-352414/cloud-run-source-deploy/stylebot.chosun.com-v2:latest'
+      - '--region=asia-northeast3'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
