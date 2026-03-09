@@ -10,6 +10,10 @@ export default defineConfig(({ mode }) => {
         port: 3000,
         host: '0.0.0.0',
       },
+      // 👇 새로 추가된 부분: Cloud Run 및 커스텀 도메인(stylebot.chosun.com) 접속 허용
+      preview: {
+        allowedHosts: true,
+      },
       plugins: [
         react(),
         tailwindcss()
