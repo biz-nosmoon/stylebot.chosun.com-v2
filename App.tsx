@@ -470,7 +470,7 @@ ${stylebookText}
             <ShieldCheck className="text-white" size={20} />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇</h1>
+            <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇.</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
               <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Data Active</span>
