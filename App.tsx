@@ -214,14 +214,14 @@ const App: React.FC = () => {
     };
 
     try {
-      const apiKey = process.env.NIKL_API_KEY;
+      const apiKey = process.env.NIKL_API_KEY || '';
       
       // 한글 포함 여부 확인 (한글 자모 및 음절 범위)
       const isKorean = /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(query);
       const searchCondition = isKorean ? 'korean_mark' : 'srclang_mark';
 
       // API Gateway 호출 URL
-      const url = `https://api-gateway.chosun.com/membership-dev/api/kornorm/examples?serviceKey=${apiKey}&searchCondition=${searchCondition}&searchKeyword=${encodeURIComponent(query)}&pageNo=1&numOfRows=10&langType=0003&resultType=json`;
+      const url = `https://api-gateway.chosun.com/membership/api/kornorm/examples?serviceKey=${apiKey}&searchCondition=${searchCondition}&searchKeyword=${encodeURIComponent(query)}&pageNo=1&numOfRows=10&langType=0003&resultType=json`;
       
       console.log("Fetching NIKL Data:", url);
       const response = await fetch(url);
@@ -308,7 +308,7 @@ ${stylebookText}
       // 2. 개발(AI Studio): AI Studio가 제공하는 process.env.GEMINI_API_KEY 사용
       const gen_apiKey = isProd 
         ? import.meta.env.VITE_API_KEY 
-        : (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '');
+        : (process.env.GEMINI_API_KEY || '');
 
       // 🚨 새 코드가 배포되었는지 확인하기 위한 추적 로그
       //console.log("🔑 API 키 상태 확인:", gen_apiKey ? "성공적으로 들어왔습니다!" : "여전히 비어있습니다 (MISSING)");
@@ -474,7 +474,7 @@ ${stylebookText}
             <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Data Active v260309</span>
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Data Active v260310</span>
             </div>
           </div>
         </div>
@@ -486,7 +486,6 @@ ${stylebookText}
             </div>
           )}
           <button 
-            onClick={() => setIsAdmin(prev => !prev)} 
             className={`w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center transition-all ${isAdmin ? 'bg-red-600 text-white border-red-500' : 'bg-slate-800 text-slate-500'}`}
           >
             <User size={16} />
