@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "echo VITE_API_KEY=$VITE_API_KEY > .env && mkdir -p public && cp Global_Stylebook_Data.txt public/ && tsc -b && vite build",
-    "start":  "vite preview --port $PORT --host 0.0.0.0",
+    "start":  "vite preview --port 8080 --host 0.0.0.0",
     "preview": "vite preview",
     "lint": "tsc"
   },
