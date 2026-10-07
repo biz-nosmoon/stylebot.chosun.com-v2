@@ -20,7 +20,7 @@ import {
   BookOpen,
   ExternalLink
 } from 'lucide-react';
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Type, ThinkingLevel } from "@google/genai";
 import { DEFAULT_STYLEBOOK } from './stylebookData';
 
 interface NiklData {
@@ -322,7 +322,9 @@ ${stylebookText}
         model: 'gemini-3.8-flash',
         contents: `교열 요청 문장: "${currentInput}"`,
         config: {
-          temperature: 0,
+          thinkingConfig: {
+            thinkingLevel: ThinkingLevel.LOW,
+          },
           systemInstruction: getDynamicPrompt(),
           responseMimeType: "application/json",
           responseSchema: {
