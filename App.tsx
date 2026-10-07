@@ -319,8 +319,7 @@ ${stylebookText}
       const ai = new GoogleGenAI({ apiKey: gen_apiKey });
       
       const response = await ai.models.generateContent({
-        //model: 'gemini-3-flash-preview',
-        model: 'gemini-3.1-flash-lite',
+        model: 'gemini-3.8-flash',
         contents: `교열 요청 문장: "${currentInput}"`,
         config: {
           temperature: 0,
@@ -474,7 +473,7 @@ ${stylebookText}
             <h1 className="text-lg font-black text-white tracking-tighter italic uppercase">조선스타일봇</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">조선스타일북 & 국립국어원 & Gemini 3.1 flash lite - v260527</span>
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">조선스타일북 & 국립국어원 & Gemini 3.8 Flash - v261007</span>
             </div>
           </div>
         </div>
